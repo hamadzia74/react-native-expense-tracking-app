@@ -55,6 +55,12 @@ const DUMMY_EXPENSES = [
     amount: 9.99,
     date: new Date("2023-04-09"),
   },
+  {
+    id: "e10",
+    description: "A pair of gloves",
+    amount: 9.99,
+    date: new Date("2025-04-17"),
+  },
 ];
 
 export const ExpensesContext = createContext({
@@ -115,3 +121,4 @@ function ExpensesContextProvider({ children }) {
     </ExpensesContext.Provider>
   );
 }
+export default ExpensesContextProvider;
