@@ -1,10 +1,12 @@
 import { View, Text, StyleSheet } from "react-native";
-import React, { useLayoutEffect } from "react";
+import React, { useContext, useLayoutEffect } from "react";
 import IconButton from "../components/UI/IconButton";
 import { GlobalStyles } from "../components/constants/styles";
 import Button from "../components/UI/Button";
+import { ExpensesContext } from "../store/expenses-context";
 
 const ManageExpenses = ({ route, navigation }) => {
+  const expenseCtx = useContext(ExpensesContext);
   const editedExpenseId = route.params?.expenseId;
   const isEditing = !!editedExpenseId; // Convert to boolean
   // isEditing will be true if editedExpenseId is not undefined or null
@@ -14,12 +16,28 @@ const ManageExpenses = ({ route, navigation }) => {
     });
   }, [navigation, isEditing]);
 
-  function deleteExpenseHandler() {}
+  function deleteExpenseHandler() {
+    expenseCtx.deleteExpense(editedExpenseId);
+    navigation.goBack();
+  }
 
   function cancelHandler() {
     navigation.goBack();
   }
   function confirmHandler() {
+    if (isEditing) {
+      expenseCtx.updateExpense(editedExpenseId, {
+        description: "Test!!!",
+        amount: 29.99,
+        date: new Date("2025-04-20"),
+      });
+    } else {
+      expenseCtx.addExpense({
+        description: "New Expense",
+        amount: 19.99,
+        date: new Date("2025-04-18"),
+      });
+    }
     navigation.goBack();
   }
 

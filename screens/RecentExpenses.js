@@ -11,7 +11,7 @@ const RecentExpenses = () => {
     const date7DaysAgo = getDateMinusDays(today, 7);
     // Filter expenses that are within the last 7 days
     // Compare the expense date with the date 7 days ago
-    return expense.date >= date7DaysAgo;
+    return expense.date >= date7DaysAgo && expense.date <= today;
   });
 
   return (
