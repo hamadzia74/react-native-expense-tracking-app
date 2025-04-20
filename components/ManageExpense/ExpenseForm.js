@@ -15,7 +15,14 @@ const ExpenseForm = ({ submitButtonLabel, onCancel, onSubmit }) => {
       return { ...curInputValues, [inputIdentifier]: enteredValue };
     });
   }
-  function submitHandler() {}
+  function submitHandler() {
+    const expenseData = {
+      amount: +inputValues.amount,
+      date: new Date(inputValues.date),
+      description: inputValues.description,
+    };
+    onSubmit(expenseData); // Pass the expense data to the parent component
+  }
 
   return (
     <View style={styles.form}>
