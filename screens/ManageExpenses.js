@@ -29,12 +29,12 @@ const ManageExpenses = ({ route, navigation }) => {
   function cancelHandler() {
     navigation.goBack();
   }
-  function confirmHandler(expenseData) {
+  async function confirmHandler(expenseData) {
     if (isEditing) {
       expenseCtx.updateExpense(editedExpenseId, expenseData);
     } else {
-      storeExpense(expenseData); // Store the expense data using the storeExpense function
-      expenseCtx.addExpense(expenseData);
+      const id = await storeExpense(expenseData); // Store the expense data using the storeExpense function
+      expenseCtx.addExpense({ ...expenseData, id: id });
     }
     navigation.goBack();
   }
