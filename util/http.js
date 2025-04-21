@@ -2,7 +2,7 @@ import axios from "axios";
 
 export function storeExpense(expenseData) {
   axios.post(
-    "https://react-native-expense-tra-4ac03-default-rtdb.firebaseio.com/expenses.json",
+    "https://your-db-url.firebaseio.com/expenses.json",
     expenseData
   );
   // .then((response) => {
