@@ -1,20 +1,14 @@
 import axios from "axios";
 
 const BACKEND_URL =
-  "https://your-db-url.firebaseio.com/expenses.json";
+  "https://react-native-expense-tra-4ac03-default-rtdb.firebaseio.com/";
 
 export function storeExpense(expenseData) {
   axios.post(BACKEND_URL + "/expenses.json", expenseData);
-  // .then((response) => {
-  //   console.log("Expense stored successfully:", response.data);
-  // })
-  // .catch((error) => {
-  //   console.error("Error storing expense:", error);
-  // });
 }
 
-export async function fetchExpense(expenseData) {
-  const response = await axios.get(BACKEND_URL + "/expenses.json", expenseData);
+export async function fetchExpenses() {
+  const response = await axios.get(BACKEND_URL + "/expenses.json");
   const expenses = [];
 
   for (const key in response.data) {
